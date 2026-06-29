@@ -1,0 +1,52 @@
+{
+  "manifest_version": 3,
+  "name": "AI Chat Exporter Private",
+  "description": "Export the current AI chat to Markdown, Word, or PDF locally.",
+  "version": "0.1.0",
+  "action": {
+    "default_title": "AI Chat Exporter",
+    "default_popup": "popup.html"
+  },
+  "permissions": ["activeTab", "scripting"],
+  "background": {
+    "service_worker": "assets/background.js"
+  },
+  "host_permissions": [
+    "https://chat.deepseek.com/*",
+    "https://chatgpt.com/*",
+    "https://chat.openai.com/*",
+    "https://gemini.google.com/*",
+    "https://bard.google.com/*",
+    "https://www.doubao.com/*",
+    "https://doubao.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chat.deepseek.com/*",
+        "https://chatgpt.com/*",
+        "https://chat.openai.com/*",
+        "https://gemini.google.com/*",
+        "https://bard.google.com/*",
+        "https://www.doubao.com/*",
+        "https://doubao.com/*"
+      ],
+      "js": ["assets/content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["assets/*.js", "assets/*.css"],
+      "matches": [
+        "https://chat.deepseek.com/*",
+        "https://chatgpt.com/*",
+        "https://chat.openai.com/*",
+        "https://gemini.google.com/*",
+        "https://bard.google.com/*",
+        "https://www.doubao.com/*",
+        "https://doubao.com/*"
+      ]
+    }
+  ]
+}

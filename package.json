@@ -1,0 +1,30 @@
+{
+  "name": "ai-chat-exporter-private",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Private local-first browser extension for exporting AI chats to Markdown, DOCX, and print-ready PDF.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "vite build && vite build --config vite.content.config.ts && vite build --config vite.background.config.ts && pnpm ascii:dist-js",
+    "typecheck": "tsc --noEmit",
+    "check": "pnpm typecheck && pnpm build && pnpm check:dist-utf8",
+    "ascii:dist-js": "node scripts/ascii-dist-js.mjs",
+    "check:dist-utf8": "node scripts/check-dist-utf8.mjs",
+    "smoke:math": "node scripts/smoke-docx-math.mjs"
+  },
+  "dependencies": {
+    "@hungknguyen/mathml2omml": "^0.4.6",
+    "docx": "^9.5.1",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^4.2.1",
+    "katex": "^0.17.0",
+    "marked": "^14.1.4"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.287",
+    "@types/katex": "^0.16.8",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.3"
+  }
+}
